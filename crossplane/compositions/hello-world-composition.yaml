@@ -1,0 +1,35 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: hello-world-composition
+spec:
+  compositeTypeRef:
+    apiVersion: example.org/v1alpha1
+    kind: XHelloWorld
+  pipeline:
+    - functionRef:
+        name: function-go-templating
+      input:
+        apiVersion: gotemplating.fn.crossplane.io/v1beta1
+        resources:
+          - name: configmap
+            base:
+              apiVersion: kubernetes.crossplane.io/v1alpha1
+              kind: Object
+              spec:
+                forProvider:
+                  manifest:
+                    apiVersion: v1
+                    kind: ConfigMap
+                    metadata:
+                      name: hello-world
+                    data:
+                      message: "Hello from Crossplane!"
+                      managed-by: "crossplane"
+                providerConfigRef:
+                  name: kubernetes-provider-config
+            patches:
+              - type: FromCompositeFieldPath
+                fromFieldPath: spec.message
+                toFieldPath: spec.forProvider.manifest.data.message
+
