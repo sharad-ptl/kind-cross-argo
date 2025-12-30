@@ -1,8 +1,0 @@
-apiVersion: example.org/v1alpha1
-kind: XHelloWorld
-metadata:
-  name: hello-world
-  namespace: default
-spec:
-  message: "Hello from Argo CD + Crossplane!"
-
