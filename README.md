@@ -20,16 +20,17 @@ This project demonstrates a hello world setup using Argo CD and Crossplane on a 
 ./scripts/install-crossplane.sh
 ```
 
-3. Apply Crossplane resources:
+3. Apply Crossplane resources (already done by install-crossplane.sh, but you can apply manually if needed):
 ```bash
-kubectl apply -f crossplane/compositions/xrd.yaml
-kubectl apply -f crossplane/compositions/hello-world-composition.yaml
-kubectl apply -f crossplane/claims/hello-world-claim.yaml
+kubectl apply -f crossplane/xrd.yaml
+kubectl apply -f crossplane/fn.yaml
+kubectl apply -f crossplane/composition.yaml
 ```
 
-4. Apply the Argo CD Application (optional):
+4. Apply the Argo CD Applications:
 ```bash
-kubectl apply -f argocd/applications/crossplane-app.yaml
+kubectl apply -f argocd/applications/app.yaml
+kubectl apply -f argocd/applications/guestbook.yaml
 ```
 
 5. Access Argo CD UI:
@@ -46,28 +47,34 @@ Default credentials:
 
 ```
 .
+├── applications-iac/          # Infrastructure as Code definitions (Deployments, Services, etc.)
+│   ├── app/                   # App resources
+│   └── guestbook/             # Guestbook resources
 ├── argocd/
 │   └── applications/          # Argo CD Application definitions
+│       ├── app.yaml           # Argo CD app for the app resources
+│       └── guestbook.yaml     # Argo CD app for guestbook resources
 ├── crossplane/
-│   ├── providers/             # Crossplane Provider configurations
-│   ├── compositions/          # Crossplane Compositions
-│   └── claims/                # Crossplane Composite Resources (XRs) - v2 uses namespaced XRs instead of claims
+│   ├── xrd.yaml               # Composite Resource Definition
+│   ├── fn.yaml                # Crossplane Function (patch-and-transform)
+│   ├── composition.yaml       # Crossplane Composition
+│   └── README.md              # Crossplane configuration details
 ├── scripts/
 │   ├── install-argocd.sh      # Argo CD installation script
-│   └── install-crossplane.sh  # Crossplane installation script
+│   ├── install-crossplane.sh  # Crossplane installation script
+│   ├── setup-rbac.sh          # RBAC setup for Crossplane
+│   └── uninstall.sh           # Cleanup script
 └── README.md
 ```
 
-## Hello World Example
+## Using Crossplane Compositions
 
-The hello world example creates a simple ConfigMap resource managed by Crossplane and synced by Argo CD.
+The Crossplane setup includes:
+- **XRD (Composite Resource Definition)**: Defines the `App` custom resource at `apps.example.crossplane.io`
+- **Function**: Uses the patch-and-transform function for resource composition
+- **Composition**: Defines how to create Kubernetes Deployments and Services from an `App` resource
 
-Apply the Composite Resource (XR):
-```bash
-kubectl apply -f crossplane/claims/hello-world-claim.yaml
-```
-
-Note: In Crossplane v2, claims have been removed. This file now creates a namespaced `XHelloWorld` Composite Resource directly.
+See `crossplane/README.md` for more details on configuring Argo CD to work with Crossplane resources.
 
 ## Cleanup
 

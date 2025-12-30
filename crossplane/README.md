@@ -138,11 +138,3 @@ data:
 
         return health_status
 ```
-
-## Get Started With Composition
-
-```bash
-kubectl apply -f xrd.yaml
-kubectl apply -f fn.yaml
-kubectl apply -f composition.yaml
-```

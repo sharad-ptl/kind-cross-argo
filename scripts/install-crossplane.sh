@@ -89,11 +89,12 @@ spec:
 EOF
 
 echo "Installing Crossplane Compositions..."
-kubectl apply -f "$PROJECT_ROOT/crossplane/compositions/xrd.yaml"
-kubectl apply -f "$PROJECT_ROOT/crossplane/compositions/hello-world-composition.yaml"
+kubectl apply -f "$PROJECT_ROOT/crossplane/xrd.yaml"
+kubectl apply -f "$PROJECT_ROOT/crossplane/fn.yaml"
+kubectl apply -f "$PROJECT_ROOT/crossplane/composition.yaml"
 
 echo "Waiting for XRD to be ready..."
-kubectl wait --for=condition=established --timeout=60s crd/xhelloworlds.example.org || true
+kubectl wait --for=condition=established --timeout=60s crd/apps.example.crossplane.io || true
 
 echo "Kubernetes Provider and Compositions installed successfully!"
 
