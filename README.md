@@ -41,7 +41,7 @@ Then visit https://localhost:8080 (accept the self-signed certificate)
 
 Default credentials:
 - Username: `admin`
-- Password: Get it with `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
+- Password: Get it with `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo`
 
 ## Project Structure
 

@@ -1,0 +1,13 @@
+apiVersion: azure.upbound.io/v1beta1
+kind: ResourceGroup
+metadata:
+  name: example-resource-group
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    location: "uksouth"
+    tags:
+      environment: "dev"
+      managed-by: "crossplane"
+

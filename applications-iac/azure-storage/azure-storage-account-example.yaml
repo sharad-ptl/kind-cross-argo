@@ -1,0 +1,21 @@
+apiVersion: storage.azure.upbound.io/v1beta1
+kind: Account
+metadata:
+  name: example-storage-account
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    location: "uksouth"
+    resourceGroupName: "example-resource-group"
+    accountTier: "Standard"
+    accountReplicationType: "LRS"
+    # Optional: Add tags
+    tags:
+      environment: "dev"
+      managed-by: "crossplane"
+    # Optional: Enable HTTPS only
+    enableHttpsTrafficOnly: true
+    # Optional: Minimum TLS version
+    minTlsVersion: "TLS1_2"
+
