@@ -1,7 +1,7 @@
 apiVersion: storage.azure.upbound.io/v1beta1
 kind: Account
 metadata:
-  name: example-storage-account
+  name: examplestorageaccount
 spec:
   providerConfigRef:
     name: default
