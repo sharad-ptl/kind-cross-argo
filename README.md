@@ -15,7 +15,7 @@ This project demonstrates a hello world setup using Argo CD and Crossplane on a 
 ./scripts/install-argocd.sh
 ```
 
-2. Install Crossplane (includes RBAC setup):
+2. Install Crossplane:
 ```bash
 ./scripts/install-crossplane.sh
 ```
@@ -62,7 +62,6 @@ Default credentials:
 ├── scripts/
 │   ├── install-argocd.sh      # Argo CD installation script
 │   ├── install-crossplane.sh  # Crossplane installation script
-│   ├── setup-rbac.sh          # RBAC setup for Crossplane
 │   └── uninstall.sh           # Cleanup script
 └── README.md
 ```

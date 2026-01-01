@@ -24,40 +24,17 @@ Combining infrastructure as code with GitOps workflows
 
 ---
 
-# Architecture
-
-```
-┌─────────────┐
-│   Git Repo  │
-│  (IaC YAML) │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐
-│   ArgoCD    │
-│  (GitOps)   │
-└──────┬──────┘
-       │
-       ▼
-┌─────────────┐      ┌──────────────┐
-│ Crossplane  │─────▶│  Kubernetes  │
-│ (Composition)│      │   (Kind)     │
-└─────────────┘      └──────────────┘
-```
-
----
-
 # Key Components
 
-## Crossplane
-- **XRD**: Custom resource definition (`App`)
-- **Composition**: Transforms `App` → Deployments + Services
-- **Function**: Patch-and-transform for resource composition
+**Crossplane**
+- XRD: `App` custom resource
+- Composition: App → Deployments + Services
+- Function: Patch-and-transform
 
-## ArgoCD
-- Manages applications via Git
-- Syncs Crossplane resources
-- Provides UI for visualization
+**ArgoCD**
+- GitOps sync from repository
+- Monitors Crossplane resources
+- Web UI for visualization
 
 ---
 
