@@ -14,6 +14,7 @@ spec:
     tags:
       environment: "dev"
       managed-by: "crossplane"
+      tag-change: "000"
     # Optional: Enable HTTPS only
     enableHttpsTrafficOnly: true
     # Optional: Minimum TLS version
