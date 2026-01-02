@@ -16,7 +16,7 @@ spec:
       managed-by: "crossplane"
       tag-change: "000"
     # Optional: Enable HTTPS only
-    enableHttpsTrafficOnly: true
+    httpsTrafficOnlyEnabled: true
     # Optional: Minimum TLS version
     minTlsVersion: "TLS1_2"
 
